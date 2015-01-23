@@ -34,19 +34,19 @@
     <!-- Employe List page -->
     <definition name="tile.employeliste" extends="rootLayout">
         <put name="titleString" value="Struts > Employe List"/>
-        <put name="panel1" value="/tiles-components/employeliste.jsp"/>
+        <put name="panel1" value="/employeliste.jsp"/>
     </definition>
   
     <!-- Employe Edit page -->
     <definition name="tile.editemploye" extends="rootLayout">
         <put name="titleString" value="Struts > Edit Employe"/>
-        <put name="panel1" value="/tiles-components/editemploye.jsp"/>
+        <put name="panel1" value="/editemploye.jsp"/>
     </definition>
     
     <!-- Employe Add page -->
     <definition name="tile.addemploye" extends="rootLayout">
         <put name="titleString" value="Struts > Add Employe"/>
-        <put name="panel1" value="/tiles-components/addemploye.jsp"/>
+        <put name="panel1" value="/addemploye.jsp"/>
     </definition>
     
 </tiles-definitions>
