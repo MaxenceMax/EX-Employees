@@ -45,7 +45,7 @@
             <td>
                 <a href="Edit.do?username=<bean:write name="employe"
                             property="username" />">Modifier</a>
-                <a href="../EX-employees/Delete.do?username=<bean:write name="employe"
+                <a href="Delete.do?username=<bean:write name="employe"
                             property="username" />">Supprimer</a>
             </td>
         </tr>
