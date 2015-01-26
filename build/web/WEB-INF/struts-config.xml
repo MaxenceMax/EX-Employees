@@ -22,7 +22,7 @@
     <action-mappings>
         <action path="/Welcome" forward="tile.login"/>
         <action path="/Login"
-          type="com.myapp.struts.action.LoginAction"
+          type="org.springframework.web.struts.DelegatingActionProxy"
           validate="true"
           input="tile.login"
           name="loginForm"
@@ -31,7 +31,7 @@
     </action>
 
     <action path="/EmployeListe"
-      type="com.myapp.struts.action.EmployeListeAction"
+      type="org.springframework.web.struts.DelegatingActionProxy"
       scope="request" >
       <forward name="success" path="tile.employeliste"/>
     </action>
@@ -39,7 +39,7 @@
     <action path="/Add" forward="tile.addemploye"/>
 
     <action path="/AddEmploye"
-      type="com.myapp.struts.action.AddEmployeAction"
+      type="org.springframework.web.struts.DelegatingActionProxy"
       name="employeForm"
       scope="request"
       input="tile.employeliste"
@@ -50,7 +50,7 @@
     </action>
 
     <action path="/Edit"
-      type="com.myapp.struts.action.GetEmployeAction"
+      type="org.springframework.web.struts.DelegatingActionProxy"
       name="employeForm"
       scope="request"
       validate="false" >
@@ -59,7 +59,7 @@
     </action>
 
     <action path="/EditEmploye"
-      type="com.myapp.struts.action.EditEmployeAction"
+      type="org.springframework.web.struts.DelegatingActionProxy"
       name="employeForm"
       scope="request"
       input="tile.employeliste"
@@ -70,7 +70,7 @@
     </action>
 
     <action path="/Delete"
-      type="com.myapp.struts.action.DeleteEmployeAction"
+      type="org.springframework.web.struts.DelegatingActionProxy"
       scope="request"
       validate="false" >
       <forward name="success" path="/EmployeListe.do"/>
@@ -119,5 +119,8 @@
             property="pathnames"
             value="/WEB-INF/validator-rules.xml,/WEB-INF/validation.xml"/>
     </plug-in>
-  
+    
+    <plug-in className="org.springframework.web.struts.ContextLoaderPlugIn" >
+        <set-property property="contextConfigLocation" value="/WEB-INF/action-servlet.xml" />
+    </plug-in>
 </struts-config>

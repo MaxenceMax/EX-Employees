@@ -12,52 +12,8 @@ import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionMessages;
 import org.apache.struts.action.ActionMessage;
 
-import java.sql.DriverManager;
-import java.sql.Connection;
-import java.sql.Statement;
-import java.sql.ResultSet;
 
-
-public class DeleteEmployeAction extends Action {
-
-  protected void deleteEmploye(String username)
-    throws Exception {
-
-    String user = null;
-    Connection conn = null;
-    Statement stmt = null;
-    ResultSet rs = null;
-
-    
-
-    try {
-
-      Class.forName ("org.apache.derby.jdbc.ClientDriver");
-      conn = DriverManager.getConnection("jdbc:derby://localhost:1527/sample", "app", "app");
-      stmt = conn.createStatement();
-
-      StringBuilder sqlString =
-        new StringBuilder("delete from employes where username='");
-      sqlString.append(username).append("'");
-
-        boolean execute = stmt.execute(sqlString.toString());
-    }
-    finally {
-
-      if (rs != null) {
-
-        rs.close();
-      }
-      if (stmt != null) {
-
-        stmt.close();
-      }
-      if (conn != null) {
-
-        conn.close();
-      }
-    }
-  }
+public class DeleteEmployeAction extends SuperAction {
 
   @Override
   public ActionForward execute(ActionMapping mapping,
@@ -91,7 +47,8 @@ public class DeleteEmployeAction extends Action {
 
     try {
 
-      deleteEmploye(request.getParameter("username"));
+      getModel().deleteEmploye(request.getParameter("username"));
+    //deleteEmploye(request.getParameter("username"));
     }
     catch (Exception e) {
 

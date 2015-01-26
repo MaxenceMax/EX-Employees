@@ -19,81 +19,7 @@ import java.sql.Statement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class LoginAction extends Action {
-
-  protected String getUser(String username, String password) {
-
-    String user = null;
-    Connection conn = null;
-    Statement stmt = null;
-    ResultSet rs = null;
-
-
-    try {
-
-      Class.forName ("org.apache.derby.jdbc.ClientDriver");
-      conn = DriverManager.getConnection("jdbc:derby://localhost:1527/sample", "app", "app");
-      stmt = conn.createStatement();
-      rs = stmt.executeQuery("select * from employes where username=\'"
-        + username + "' "
-        + "and password='" + password + "'");
-
-      if ( rs.next() ) {
-
-        user = rs.getString("username");
-        // Iteration sur le resultat
-        System.err.println("Username : "
-          + user
-          + " Password : " + rs.getString("password"));
-      }
-      else {
-
-        System.err.println("---->Utilisateur non trouve<----");
-      }
-    }
-    catch (ClassNotFoundException | SQLException e) {
-
-      System.err.println(e.getMessage());
-    }
-    finally {
-
-      if (rs != null) {
-
-        try {
-
-          rs.close();
-        }
-        catch (SQLException sqle) {
-
-          System.err.println(sqle.getMessage());
-        }
-      }
-      if (stmt != null) {
-
-        try {
-
-          stmt.close();
-        }
-        catch (SQLException sqle) {
-
-          System.err.println(sqle.getMessage());
-        }
-      }
-      if (conn != null) {
-
-        try {
-
-          conn.close();
-        }
-        catch (SQLException sqle) {
-
-          System.err.println(sqle.getMessage());
-        }
-      }
-    }
-    return user;
-  }
-
+public class LoginAction extends SuperAction {
   @Override
   public ActionForward execute(ActionMapping mapping,
     ActionForm form,
@@ -111,7 +37,8 @@ public class LoginAction extends Action {
     String username = ((LoginForm)form).getUsername();
     String password = ((LoginForm)form).getPassword();
 
-    user = getUser(username, password);
+    //user = getUser(username, password);
+    user = getModel().getUser(username, password);
 
     // Cible en cas d'echec
     if ( user == null ) {

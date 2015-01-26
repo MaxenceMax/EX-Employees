@@ -1,5 +1,6 @@
 package com.myapp.struts.action;
 
+import com.myapp.struts.bean.Employe;
 import com.myapp.struts.formbean.EmployeForm;
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -19,66 +20,7 @@ import java.sql.Statement;
 import java.sql.ResultSet;
 
 
-public class EditEmployeAction extends Action {
-
-  protected void updateUser(ActionForm form)
-    throws Exception {
-
-    String user = null;
-    Connection conn = null;
-    Statement stmt = null;
-    ResultSet rs = null;
-
-    
-
-    try {
-
-      EmployeForm eForm = (EmployeForm)form;
-      Class.forName ("org.apache.derby.jdbc.ClientDriver");
-      conn = DriverManager.getConnection("jdbc:derby://localhost:1527/sample", "app", "app");
-      stmt = conn.createStatement();
-
-      StringBuilder sqlString =
-        new StringBuilder("update employes set password='");
-
-      sqlString.append(eForm.getPassword());
-      sqlString.append("', ");
-      sqlString.append("roleid=");
-      sqlString.append(eForm.getRoleid());
-      sqlString.append(", ");
-      sqlString.append("name='");
-      sqlString.append(eForm.getName());
-      sqlString.append("', ");
-      sqlString.append("phone='");
-      sqlString.append(eForm.getPhone());
-      sqlString.append("', ");
-      sqlString.append("email='");
-      sqlString.append(eForm.getEmail());
-      sqlString.append("', ");
-      sqlString.append("depid=");
-      sqlString.append(eForm.getDepid());
-      sqlString.append(" where username='");
-      sqlString.append(eForm.getUsername());
-      sqlString.append("'");
-      stmt.execute(sqlString.toString());
-    }
-    finally {
-
-      if (rs != null) {
-
-          rs.close();
-      }
-      if (stmt != null) {
-
-          stmt.close();
-      }
-      if (conn != null) {
-
-          conn.close();
-      }
-    }
-  }
-
+public class EditEmployeAction extends SuperAction {
   @Override
   public ActionForward execute(ActionMapping mapping,
     ActionForm form,
@@ -118,8 +60,16 @@ public class EditEmployeAction extends Action {
     }
 
     try {
-
-        updateUser(form);
+        EmployeForm eForm = (EmployeForm) form;
+        Employe e = new Employe();
+        e.setUsername(eForm.getUsername());
+        e.setPassword(eForm.getPassword());
+        e.setDepid(Integer.parseInt(eForm.getDepid()));
+        e.setEmail(eForm.getEmail());
+        e.setPhone(e.getPhone());
+        e.setRoleid(Integer.parseInt(eForm.getRoleid()));
+        e.setName(eForm.getName());
+        getModel().updateUser(e);
     }
     catch (Exception e) {
 
