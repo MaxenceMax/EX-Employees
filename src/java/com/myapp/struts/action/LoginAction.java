@@ -1,6 +1,7 @@
 package com.myapp.struts.action;
 
 import com.myapp.struts.formbean.LoginForm;
+import com.myapp.struts.model.ModelException;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -25,7 +26,7 @@ public class LoginAction extends SuperAction {
     ActionForm form,
     HttpServletRequest request,
     HttpServletResponse response)
-    throws IOException, ServletException {
+    throws IOException, ServletException, ModelException {
 
     String user;
 
@@ -38,7 +39,7 @@ public class LoginAction extends SuperAction {
     String password = ((LoginForm)form).getPassword();
 
     //user = getUser(username, password);
-    user = getModel().getUser(username, password);
+    user = getIModel().getUser(username, password);
 
     // Cible en cas d'echec
     if ( user == null ) {

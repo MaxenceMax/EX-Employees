@@ -69,7 +69,7 @@ public class EditEmployeAction extends SuperAction {
         e.setPhone(e.getPhone());
         e.setRoleid(Integer.parseInt(eForm.getRoleid()));
         e.setName(eForm.getName());
-        getModel().updateUser(e);
+        getIModel().updateUser(e);
     }
     catch (Exception e) {
 

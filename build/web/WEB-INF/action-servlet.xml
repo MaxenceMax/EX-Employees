@@ -2,8 +2,8 @@
 <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
 
 <!--
-  - DispatcherServlet application context for the Countries web tier.
-  -->
+- DispatcherServlet application context for the Countries web tier.
+-->
 
 <!--
     Document   : action-servlet.xml
@@ -14,7 +14,7 @@
 -->
 
 <beans> 
-    <bean id="dataSourceCotation" class="org.apache.commons.dbcp.BasicDataSource" singleton="true">
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" singleton="true">
         <property name="driverClassName" value="org.apache.derby.jdbc.ClientDriver"/>
         <property name="url" value="jdbc:derby://localhost:1527/sample" />
         <property name="username" value="app" />
@@ -22,10 +22,14 @@
         <property name="maxActive" value="10" />
     </bean>
     <bean id="dao" class="com.myapp.struts.model.ModeleImp" singleton="true">
-        <property name="datasource"> <ref bean="dataSourceCotation"/></property>
+        <property name="datasource"> 
+            <ref bean="dataSource"/>
+        </property>
     </bean>
     <bean id="abstractAction" abstract="true">
-        <property name="model"><ref bean="dao"/></property>
+        <property name="IModel">
+            <ref bean="dao"/>
+        </property>
     </bean>
     <bean name="/Add" parent="abstractAction" class="com.myapp.struts.action.AddEmployeAction"/>
     <bean name="/Delete" parent="abstractAction" class="com.myapp.struts.action.DeleteEmployeAction"/>

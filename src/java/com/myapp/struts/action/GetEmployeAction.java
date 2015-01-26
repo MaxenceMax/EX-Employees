@@ -50,7 +50,7 @@ public class GetEmployeAction extends SuperAction {
     }
 
     try {
-        Employe e = getModel().buildEmployeForm(request.getParameter("username"));
+        Employe e = getIModel().buildEmployeForm(request.getParameter("username"));
       
       if ( e == null ) {
       

@@ -20,9 +20,9 @@ public interface IModel {
     
     public void updateUser(Employe e) throws ModelException;
     
-    public ArrayList getEmployes();
+    public ArrayList getEmployes() throws ModelException;
     
     public Employe buildEmployeForm(String username) throws ModelException;
     
-    public String getUser(String username, String password);
+    public String getUser(String username, String password) throws ModelException;
 }

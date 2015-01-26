@@ -9,11 +9,11 @@ import com.myapp.struts.model.IModel;
 public class SuperAction extends Action{
     private IModel model = null;
 
-    public void setModel(IModel m) {
+    public void setIModel(IModel m) {
         this.model = m;
     }
 
-    public IModel getModel() {
+    public IModel getIModel() {
         return this.model;
     }
 }

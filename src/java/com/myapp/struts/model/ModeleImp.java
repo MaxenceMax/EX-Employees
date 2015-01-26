@@ -7,13 +7,10 @@ package com.myapp.struts.model;
 
 import com.myapp.struts.bean.Employe;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.sql.DataSource;
 
 /**
@@ -52,10 +49,8 @@ public class ModeleImp implements IModel {
 
         try {
 
-            Class.forName("org.apache.derby.jdbc.ClientDriver");
-            conn = DriverManager.getConnection("jdbc:derby://localhost:1527/sample", "app", "app");
+            conn = getConnection();
             stmt = conn.createStatement();
-
             StringBuilder sqlString
                     = new StringBuilder("insert into employes values ('");
 
@@ -68,10 +63,8 @@ public class ModeleImp implements IModel {
             sqlString.append(e.getDepid()).append(")");
 
             stmt.execute(sqlString.toString());
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ModeleImp.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(ModeleImp.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            throw new ModelException(ex.getMessage());
         } finally {
 
             if (rs != null) {
@@ -93,7 +86,7 @@ public class ModeleImp implements IModel {
                 }
             }
             if (conn != null) {
-              try {
+                try {
 
                     conn.close();
                 } catch (SQLException sqle) {
@@ -113,8 +106,7 @@ public class ModeleImp implements IModel {
 
         try {
 
-            Class.forName("org.apache.derby.jdbc.ClientDriver");
-            conn = DriverManager.getConnection("jdbc:derby://localhost:1527/sample", "app", "app");
+            conn = getConnection();
             stmt = conn.createStatement();
 
             StringBuilder sqlString
@@ -122,10 +114,8 @@ public class ModeleImp implements IModel {
             sqlString.append(username).append("'");
 
             boolean execute = stmt.execute(sqlString.toString());
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ModeleImp.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(ModeleImp.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            throw new ModelException(ex.getMessage());
         } finally {
 
             if (rs != null) {
@@ -166,8 +156,7 @@ public class ModeleImp implements IModel {
         ResultSet rs = null;
 
         try {
-            Class.forName("org.apache.derby.jdbc.ClientDriver");
-            conn = DriverManager.getConnection("jdbc:derby://localhost:1527/sample", "app", "app");
+            conn = getConnection();
             stmt = conn.createStatement();
 
             StringBuilder sqlString
@@ -193,10 +182,8 @@ public class ModeleImp implements IModel {
             sqlString.append(e.getUsername());
             sqlString.append("'");
             stmt.execute(sqlString.toString());
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ModeleImp.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(ModeleImp.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            throw new ModelException(ex.getMessage());
         } finally {
 
             if (rs != null) {
@@ -230,7 +217,7 @@ public class ModeleImp implements IModel {
     }
 
     @Override
-    public ArrayList getEmployes() {
+    public ArrayList getEmployes() throws ModelException {
         Employe employe;
         ArrayList employes = new ArrayList();
         Connection conn = null;
@@ -238,11 +225,9 @@ public class ModeleImp implements IModel {
         ResultSet rs = null;
 
         try {
-            Class.forName("org.apache.derby.jdbc.ClientDriver");
-            conn = DriverManager.getConnection("jdbc:derby://localhost:1527/sample", "app", "app");
+            conn = getConnection();
             stmt = conn.createStatement();
-            rs
-                    = stmt.executeQuery("select * from employes, roles, services where employes.roleid=roles.roleid and employes.depid=services.depid");
+            rs= stmt.executeQuery("select * from employes, roles, services where employes.roleid=roles.roleid and employes.depid=services.depid");
 
             while (rs.next()) {
 
@@ -261,9 +246,8 @@ public class ModeleImp implements IModel {
 
                 System.err.println("Username : " + employe.getUsername() + " Department : " + employe.getDepartment());
             }
-        } catch (ClassNotFoundException | SQLException e) {
-
-            System.err.println(e.getMessage());
+        } catch (Exception ex) {
+            throw new ModelException(ex.getMessage());
         } finally {
 
             if (rs != null) {
@@ -310,9 +294,7 @@ public class ModeleImp implements IModel {
         Employe form = null;
 
         try {
-
-            Class.forName("org.apache.derby.jdbc.ClientDriver");
-            conn = DriverManager.getConnection("jdbc:derby://localhost:1527/sample", "app", "app");
+            conn = getConnection();
             stmt = conn.createStatement();
             rs = stmt.executeQuery("select * from employes where username=\'"
                     + username + "'");
@@ -334,10 +316,8 @@ public class ModeleImp implements IModel {
 
                 throw new ModelException("Employe " + username + " non trouve!");
             }
-        } catch (SQLException ex) {
-            Logger.getLogger(ModeleImp.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ModeleImp.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            throw new ModelException(ex.getMessage());
         } finally {
 
             if (rs != null) {
@@ -372,16 +352,14 @@ public class ModeleImp implements IModel {
     }
 
     @Override
-    public String getUser(String username, String password) {
+    public String getUser(String username, String password) throws ModelException{
         String user = null;
         Connection conn = null;
         Statement stmt = null;
         ResultSet rs = null;
 
         try {
-
-            Class.forName("org.apache.derby.jdbc.ClientDriver");
-            conn = DriverManager.getConnection("jdbc:derby://localhost:1527/sample", "app", "app");
+            conn = getConnection();
             stmt = conn.createStatement();
             rs = stmt.executeQuery("select * from employes where username=\'"
                     + username + "' "
@@ -398,9 +376,8 @@ public class ModeleImp implements IModel {
 
                 System.err.println("---->Utilisateur non trouve<----");
             }
-        } catch (ClassNotFoundException | SQLException e) {
-
-            System.err.println(e.getMessage());
+        } catch (Exception ex) {
+            throw new ModelException(ex.getMessage());
         } finally {
 
             if (rs != null) {

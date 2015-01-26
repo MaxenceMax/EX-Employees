@@ -62,7 +62,7 @@ public class AddEmployeAction extends SuperAction {
         e.setPhone(e.getPhone());
         e.setRoleid(Integer.parseInt(eForm.getRoleid()));
         e.setName(eForm.getName());
-        getModel().insertUser(e);
+        getIModel().insertUser(e);
     }
     catch (Exception e) {
 

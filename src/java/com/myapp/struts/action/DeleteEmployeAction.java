@@ -47,7 +47,7 @@ public class DeleteEmployeAction extends SuperAction {
 
     try {
 
-      getModel().deleteEmploye(request.getParameter("username"));
+      getIModel().deleteEmploye(request.getParameter("username"));
     //deleteEmploye(request.getParameter("username"));
     }
     catch (Exception e) {

@@ -1,5 +1,6 @@
 package com.myapp.struts.action;
 
+import com.myapp.struts.model.ModelException;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -19,7 +20,7 @@ public class EmployeListeAction extends SuperAction {
     ActionForm form,
     HttpServletRequest request,
     HttpServletResponse response)
-    throws IOException, ServletException {
+    throws IOException, ServletException, ModelException {
 
     // Default target to success
     String target = "success";
@@ -48,7 +49,7 @@ public class EmployeListeAction extends SuperAction {
     ArrayList employes;
 
     //employes = getEmployes();
-    employes = getModel().getEmployes();
+    employes = getIModel().getEmployes();
 
     // Set the target to failure
     if ( employes == null ) {
