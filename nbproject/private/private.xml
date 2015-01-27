@@ -4,11 +4,6 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/Users/Nicolas/Desktop/M1/S2/INF%203%20-%20Développement%20à%20base%20de%20composants%20et%20services/TP/tp1/EX-Employees/web/WEB-INF/action-servlet.xml</file>
-            <file>file:/Users/Nicolas/Desktop/M1/S2/INF%203%20-%20Développement%20à%20base%20de%20composants%20et%20services/TP/tp1/EX-Employees/src/java/com/myapp/struts/formbean/EmployeForm.java</file>
-            <file>file:/Users/Nicolas/Desktop/M1/S2/INF%203%20-%20Développement%20à%20base%20de%20composants%20et%20services/TP/tp1/EX-Employees/web/WEB-INF/struts-config.xml</file>
-            <file>file:/Users/Nicolas/Desktop/M1/S2/INF%203%20-%20Développement%20à%20base%20de%20composants%20et%20services/TP/tp1/EX-Employees/src/java/com/myapp/struts/model/IModel.java</file>
-            <file>file:/Users/Nicolas/Desktop/M1/S2/INF%203%20-%20Développement%20à%20base%20de%20composants%20et%20services/TP/tp1/EX-Employees/src/java/com/myapp/struts/action/EditEmployeAction.java</file>
-            <file>file:/Users/Nicolas/Desktop/M1/S2/INF%203%20-%20Développement%20à%20base%20de%20composants%20et%20services/TP/tp1/EX-Employees/src/java/com/myapp/struts/action/AddEmployeAction.java</file>
             <file>file:/Users/Nicolas/Desktop/M1/S2/INF%203%20-%20Développement%20à%20base%20de%20composants%20et%20services/TP/tp1/EX-Employees/src/java/com/myapp/struts/model/ModeleImp.java</file>
         </group>
     </open-files>
