@@ -12,6 +12,7 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionMessages;
 import org.apache.struts.action.ActionMessage;
+import com.myapp.struts.formbean.EmployeForm;
 
 public class GetEmployeAction extends SuperAction {
   @Override
@@ -20,6 +21,8 @@ public class GetEmployeAction extends SuperAction {
     HttpServletRequest request,
     HttpServletResponse response)
     throws IOException, ServletException {
+      
+      System.out.println("Tfaefezzef");System.out.println("Tfaefezzef");
 
     // Cible par defaut en cas de succes
     String target = "success";
@@ -51,7 +54,20 @@ public class GetEmployeAction extends SuperAction {
 
     try {
         Employe e = getIModel().buildEmployeForm(request.getParameter("username"));
+        
+        // je set mon form
+        EmployeForm employeForm = new EmployeForm();
+        employeForm.setEmail(e.getEmail());
+        employeForm.setDepid(Integer.toString(e.getDepid()));
+        employeForm.setName(e.getName());
+        employeForm.setPassword(e.getPassword());
+        employeForm.setPhone(e.getPhone());
+        employeForm.setRoleid(Integer.toString(e.getRoleid()));
+        employeForm.setUsername(e.getUsername());
+        
       
+        form = employeForm;
+        
       if ( e == null ) {
       
         System.err.println("---->e est null<----");
