@@ -302,7 +302,7 @@ public class ModeleImp implements IModel {
             if (rs.next()) {
 
                 form = new Employe();
-
+                
                 form.setUsername(rs.getString("username"));
                 form.setPassword(rs.getString("password"));
                 form.setDepid(Integer.parseInt(rs.getString("depid")));

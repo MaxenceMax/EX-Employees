@@ -66,7 +66,7 @@ public class EditEmployeAction extends SuperAction {
         e.setPassword(eForm.getPassword());
         e.setDepid(Integer.parseInt(eForm.getDepid()));
         e.setEmail(eForm.getEmail());
-        e.setPhone(e.getPhone());
+        e.setPhone(eForm.getPhone());
         e.setRoleid(Integer.parseInt(eForm.getRoleid()));
         e.setName(eForm.getName());
         getIModel().updateUser(e);

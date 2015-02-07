@@ -123,4 +123,8 @@
     <plug-in className="org.springframework.web.struts.ContextLoaderPlugIn" >
         <set-property property="contextConfigLocation" value="/WEB-INF/action-servlet.xml" />
     </plug-in>
+    
+    <plug-in className="com.myapp.struts.plugIn.Plugin" >
+        <set-property property="modelClassName" value="com.myapp.model.JPAModel.ModeleJPAImp" />
+    </plug-in>
 </struts-config>
