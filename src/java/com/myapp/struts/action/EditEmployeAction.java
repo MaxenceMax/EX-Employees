@@ -2,6 +2,7 @@ package com.myapp.struts.action;
 
 import com.myapp.struts.bean.Employe;
 import com.myapp.struts.formbean.EmployeForm;
+import com.myapp.struts.model.Employes;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -61,7 +62,7 @@ public class EditEmployeAction extends SuperAction {
 
     try {
         EmployeForm eForm = (EmployeForm) form;
-        Employe e = new Employe();
+        Employes e = new Employes();
         e.setUsername(eForm.getUsername());
         e.setPassword(eForm.getPassword());
         e.setDepid(Integer.parseInt(eForm.getDepid()));
@@ -69,16 +70,16 @@ public class EditEmployeAction extends SuperAction {
         e.setPhone(eForm.getPhone());
         e.setRoleid(Integer.parseInt(eForm.getRoleid()));
         e.setName(eForm.getName());
-        getIModel().updateUser(e);
+        getModel().updateUser(e);
     }
-    catch (Exception e) {
+    catch (Exception ex) {
 
       target = "error";
       ActionMessages errors = new ActionMessages();
 
       errors.add(ActionMessages.GLOBAL_MESSAGE,
         new ActionMessage("errors.database.error",
-        e.getMessage()));
+        ex.getMessage()));
 
       // Signaler les erreurs eventuelles
       if (!errors.isEmpty()) {

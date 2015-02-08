@@ -49,7 +49,7 @@ public class EmployeListeAction extends SuperAction {
     ArrayList employes;
 
     //employes = getEmployes();
-    employes = getIModel().getEmployes();
+    employes = getModel().getEmployes();
 
     // Set the target to failure
     if ( employes == null ) {

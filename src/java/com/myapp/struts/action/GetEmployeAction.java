@@ -13,6 +13,7 @@ import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionMessages;
 import org.apache.struts.action.ActionMessage;
 import com.myapp.struts.formbean.EmployeForm;
+import com.myapp.struts.model.Employes;
 
 public class GetEmployeAction extends SuperAction {
   @Override
@@ -53,7 +54,7 @@ public class GetEmployeAction extends SuperAction {
     }
 
     try {
-        Employe e = getIModel().buildEmployeForm(request.getParameter("username"));
+        Employes e = getModel().buildEmployeForm(request.getParameter("username"));
         
         // je set mon form
         EmployeForm employeForm = new EmployeForm();

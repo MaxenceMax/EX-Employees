@@ -39,7 +39,7 @@ public class LoginAction extends SuperAction {
     String password = ((LoginForm)form).getPassword();
 
     //user = getUser(username, password);
-    user = getIModel().getUser(username, password);
+    user = getModel().getUser(username, password);
 
     // Cible en cas d'echec
     if ( user == null ) {

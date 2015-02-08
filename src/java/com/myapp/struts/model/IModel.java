@@ -6,7 +6,6 @@
 
 package com.myapp.struts.model;
 
-import com.myapp.struts.bean.Employe;
 import java.util.ArrayList;
 
 /**
@@ -14,15 +13,15 @@ import java.util.ArrayList;
  * @author Nicolas
  */
 public interface IModel {
-    public void insertUser(Employe e) throws ModelException;
+    public void insertUser(Employes e) throws ModelException;
     
     public void deleteEmploye(String username) throws ModelException;
     
-    public void updateUser(Employe e) throws ModelException;
+    public void updateUser(Employes e) throws ModelException;
     
     public ArrayList getEmployes() throws ModelException;
     
-    public Employe buildEmployeForm(String username) throws ModelException;
+    public Employes buildEmployeForm(String username) throws ModelException;
     
     public String getUser(String username, String password) throws ModelException;
 }

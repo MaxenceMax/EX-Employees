@@ -48,7 +48,7 @@ public class Employes implements Serializable {
     @Column(name = "NAME")
     private String name;
     @Column(name = "ROLEID")
-    private Short roleid;
+    private int roleid;
     // @Pattern(regexp="^\\(?(\\d{3})\\)?[- ]?(\\d{3})[- ]?(\\d{4})$", message="Invalid phone/fax format, should be as xxx-xxx-xxxx")//if the field contains phone or fax number consider using this annotation to enforce field validation
     @Size(max = 15)
     @Column(name = "PHONE")
@@ -58,7 +58,7 @@ public class Employes implements Serializable {
     @Column(name = "EMAIL")
     private String email;
     @Column(name = "DEPID")
-    private Short depid;
+    private int depid;
 
     public Employes() {
     }
@@ -91,11 +91,11 @@ public class Employes implements Serializable {
         this.name = name;
     }
 
-    public Short getRoleid() {
+    public int getRoleid() {
         return roleid;
     }
 
-    public void setRoleid(Short roleid) {
+    public void setRoleid(int roleid) {
         this.roleid = roleid;
     }
 
@@ -115,11 +115,11 @@ public class Employes implements Serializable {
         this.email = email;
     }
 
-    public Short getDepid() {
+    public int getDepid() {
         return depid;
     }
 
-    public void setDepid(Short depid) {
+    public void setDepid(int depid) {
         this.depid = depid;
     }
 

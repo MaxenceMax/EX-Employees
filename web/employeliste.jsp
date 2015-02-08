@@ -36,12 +36,12 @@
             <td>
                 <bean:write name="employe" property="email" />
             </td>
-            <td>
-                <bean:write name="employe" property="department" />
+            <!--<td>
+                <%--<bean:write name="employe" property="department" />--%>
             </td>
             <td>
-                <bean:write name="employe" property="rolename" />
-            </td>
+                <%--<bean:write name="employe" property="rolename" />--%>
+            </td>-->
             <td>
                 <a href="Edit.do?username=<bean:write name="employe"
                             property="username" />">Modifier</a>
